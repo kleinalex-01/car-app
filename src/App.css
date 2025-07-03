@@ -1,0 +1,8 @@
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(120deg, #1a1e2e 50%, #2196f3 50%);
+  color: var(--text-color);
+  text-shadow: var(--text-shadow);
+}
