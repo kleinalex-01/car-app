@@ -6,7 +6,7 @@ import { Footer } from './Footer';
 export const MainLayout: React.FC = () => {
     return (
         <>
-        <div className="container-fluid main-container">
+        <div className="container-fluid main-container col-12">
 
             <div className='row'>
                 <NavBar />

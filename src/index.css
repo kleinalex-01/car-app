@@ -3,7 +3,9 @@
   margin: 0;
   padding: 0;
   font-weight: bolder;
+  box-sizing: border-box;
   --font: monospace;
   --text: #f8f4f4;
+  --text-hover: #cbcfff;
   --text-shadow: 0 0 2px rgba(240, 240, 240, 0.3)
 }

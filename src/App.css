@@ -4,17 +4,3 @@
   color: var(--text);
   text-shadow: var(--text-shadow);
 }
-.magnet{
-  font-size: 2rem;
-  padding: 1rem;
-  margin-bottom: 1rem;
-}
-
-.bi-search {
-  transition: all ease-in-out 200ms;
-}
-
-.bi-search:hover {
-  cursor: pointer;
-  color: #cdc7fd;
-}

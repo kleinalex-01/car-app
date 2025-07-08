@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { SplitText } from "gsap/SplitText";
 import { ScrambleTextPlugin } from "gsap/ScrambleTextPlugin";
@@ -7,19 +7,18 @@ import "./ScrambledText.css";
 
 gsap.registerPlugin(SplitText, ScrambleTextPlugin);
 
-import type { ReactNode } from "react";
-
-interface ScrambledTextProps {
+export interface ScrambledTextProps {
   radius?: number;
   duration?: number;
   speed?: number;
   scrambleChars?: string;
   className?: string;
   style?: React.CSSProperties;
-  children: ReactNode;
+  children: React.ReactNode;
+  playOnMount?: boolean;
 }
 
-const ScrambledText = ({
+const ScrambledText: React.FC<ScrambledTextProps> = ({
   radius = 100,
   duration = 1.2,
   speed = 0.5,
@@ -27,9 +26,10 @@ const ScrambledText = ({
   className = "",
   style = {},
   children,
-}: ScrambledTextProps) => {
+  playOnMount = false,
+}) => {
   const rootRef = useRef<HTMLDivElement | null>(null);
-  const charsRef = useRef<Element[]>([]);
+  const charsRef = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
     if (!rootRef.current) return;
@@ -38,29 +38,18 @@ const ScrambledText = ({
       type: "chars",
       charsClass: "char",
     });
-    charsRef.current = split.chars;
+    charsRef.current = split.chars as HTMLElement[];
 
     charsRef.current.forEach((c) => {
       gsap.set(c, {
-        display: 'inline-block',
-        attr: { 'data-content': c.innerHTML },
+        display: "inline-block",
+        attr: { "data-content": c.innerHTML },
       });
     });
 
-    interface HandleMoveEvent extends MouseEvent {
-      // You can extend or add more properties if needed
-    }
-
-    interface CharElement extends HTMLElement {
-      dataset: {
-        content?: string;
-        [key: string]: string | undefined;
-      };
-    }
-
-    const handleMove = (e: HandleMoveEvent) => {
+    const handleMove = (e: PointerEvent) => {
       charsRef.current.forEach((c) => {
-        const { left, top, width, height } = (c as CharElement).getBoundingClientRect();
+        const { left, top, width, height } = c.getBoundingClientRect();
         const dx = e.clientX - (left + width / 2);
         const dy = e.clientY - (top + height / 2);
         const dist = Math.hypot(dx, dy);
@@ -70,7 +59,7 @@ const ScrambledText = ({
             overwrite: true,
             duration: duration * (1 - dist / radius),
             scrambleText: {
-              text: (c as CharElement).dataset.content || "",
+              text: (c as HTMLElement).dataset.content || "",
               chars: scrambleChars,
               speed,
             },
@@ -82,6 +71,21 @@ const ScrambledText = ({
 
     const el = rootRef.current;
     el.addEventListener("pointermove", handleMove);
+
+    if (playOnMount) {
+      charsRef.current.forEach((c, i) => {
+        gsap.to(c, {
+          delay: i * 0.02,
+          duration,
+          scrambleText: {
+            text: c.dataset.content || "",
+            chars: scrambleChars,
+            speed,
+          },
+          ease: "power1.out"
+        });
+      });
+    }
 
     return () => {
       el.removeEventListener("pointermove", handleMove);
