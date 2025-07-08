@@ -1,12 +1,21 @@
 import React from "react";
 import "./App.css"
 import 'car-makes-icons/dist/style.css';
+import { Routes, Route } from "react-router-dom";
+import { MainLayout } from "./Layout/MainLayout";
+import { HomePage } from "./Components/HomePage";
+import { NotFound } from "./Components/NotFound";
 
 export const App: React.FC = () => {
   return (
-    <div className="app-container">
-      <h1>Welcome to the React App</h1>
-      <p>This is a simple React application.</p>
-    </div>
+    <>
+    <Routes>
+      <Route path="/" element={<MainLayout />}>
+        <Route index element={<HomePage />} />
+
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
+    </>
   );
 }
