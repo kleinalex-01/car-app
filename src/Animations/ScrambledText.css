@@ -1,0 +1,11 @@
+.text-block {
+  margin: 7vw;
+  max-width: 800px;
+  font-family: var(--font);
+  font-size: clamp(14px, 4vw, 32px);
+  color: var(--text);
+}
+.char {
+  will-change: transform;
+  display: inline-block;
+}
