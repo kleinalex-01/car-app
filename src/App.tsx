@@ -13,8 +13,8 @@ export const App: React.FC = () => {
       <Route path="/" element={<MainLayout />}>
         <Route index element={<HomePage />} />
 
-        <Route path="*" element={<NotFound />} />
       </Route>
+        <Route path="*" element={<NotFound />} />
     </Routes>
     </>
   );
