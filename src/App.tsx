@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css"
-import 'car-makes-icons/dist/style.css';
 import { Routes, Route } from "react-router-dom";
 import { MainLayout } from "./Layout/MainLayout";
-import { HomePage } from "./Components/HomePage";
+import { HomePage } from "./Components/HomePage/HomePage";
 import { NotFound } from "./Components/NotFound";
 
 export const App: React.FC = () => {

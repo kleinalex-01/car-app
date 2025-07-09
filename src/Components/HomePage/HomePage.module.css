@@ -1,0 +1,137 @@
+.carouselContainer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  --outer-r: 24px;
+  --p-distance: 12px;
+}
+
+.carouselTrack {
+  display: flex;
+  gap: 16px;
+}
+
+.carouselItem {
+  position: relative;
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1px solid #555;
+  border-radius: calc(var(--outer-r) - var(--p-distance));
+  overflow: hidden;
+  cursor: grab;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.carouselItem:active {
+  cursor: grabbing;
+}
+
+.carouselContainer.round {
+  border: 1px solid #555;
+}
+
+.carouselItem.round {
+  background-color: #0D0716;
+  position: relative;
+  bottom: 0.1em;
+  border: 1px solid #555;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+  margin: 0;
+}
+
+.carouselIndicatorsContainer.round {
+  position: absolute;
+  z-index: 2;
+  bottom: 3em;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carouselIndicator.active {
+  background-color: #fff;
+}
+
+.carouselIndicator.inactive {
+  background-color: #555;
+}
+
+.carouselItemHeader {
+  margin-bottom: 16px;
+  padding: 20px;
+  padding-top: 20px;
+}
+
+.carouselIconContainer {
+  display: flex;
+  height: 28px;
+  width: 28px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.carouselIcon {
+  height: 16px;
+  width: 16px;
+  color: #060010;
+}
+
+.carouselItemContent {
+  padding: 20px;
+  padding-bottom: 20px;
+}
+
+.carouselItemTitle {
+  margin-bottom: 4px;
+  font-weight: 900;
+  font-size: 18px;
+  color: #fff;
+}
+
+.carouselItemDescription {
+  font-size: 14px;
+  color: #fff;
+}
+
+.carouselIndicatorsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+
+.carouselIndicators {
+  margin-top: 16px;
+  display: flex;
+  width: 150px;
+  justify-content: space-between;
+  padding: 0 32px;
+}
+
+.carouselIndicator {
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 150ms;
+}
+
+.carouselOverlay {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  pointer-events: none;
+}
