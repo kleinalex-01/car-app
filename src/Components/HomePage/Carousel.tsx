@@ -1,15 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue } from "framer-motion";
 import type { PanInfo } from "framer-motion";
-import {
-  FiCircle,
-  FiCode,
-  FiFileText,
-  FiLayers,
-  FiLayout,
-} from "react-icons/fi";
 import styles from "./HomePage.module.css";
-import bgImage from "../../assets/fiat_bg.jpg";
+import bgImageFiat from "../../assets/fiat_bg.jpg";
+import bgImageCitroen from "../../assets/citroen_bg.jpg";
+import bgImageFerrari from "../../assets/ferrari_bg.jpg";
+import "car-makes-icons/dist/style.css"
 
 export interface CarouselItem {
   title: string;
@@ -30,39 +26,25 @@ export interface CarouselProps {
 
 const DEFAULT_ITEMS: CarouselItem[] = [
   {
-    title: "Text Animations",
-    description: "Cool text animations for your projects.",
+    title: "Fiat 500",
+    description: "1.2L 8V 69HP",
     id: 1,
-    icon: <FiFileText className={styles.carouselIcon} />,
-    image: bgImage,
+    icon: <i className={`${styles.carouselIcon} car-fiat`}></i>,
+    image: bgImageFiat,
   },
   {
-    title: "Animations",
-    description: "Smooth animations for your projects.",
+    title: "Citroen C5 Aircross",
+    description: "73kWh Electric 213HP",
     id: 2,
-    icon: <FiCircle className={styles.carouselIcon} />,
-    image: bgImage,
+    icon: <i className={`${styles.carouselIcon} car-citroen`}></i>,
+    image: bgImageCitroen,
   },
   {
-    title: "Components",
-    description: "Reusable components for your projects.",
+    title: "Ferrari Berlinetta",
+    description: "6.3L V12 740HP",
     id: 3,
-    icon: <FiLayers className={styles.carouselIcon} />,
-    image: bgImage,
-  },
-  {
-    title: "Backgrounds",
-    description: "Beautiful backgrounds and patterns for your projects.",
-    id: 4,
-    icon: <FiLayout className={styles.carouselIcon} />,
-    image: bgImage,
-  },
-  {
-    title: "Common UI",
-    description: "Common UI components are coming soon!",
-    id: 5,
-    icon: <FiCode className={styles.carouselIcon} />,
-    image: bgImage,
+    icon: <i className={`${styles.carouselIcon} car-ferrari`}></i>,
+    image: bgImageFerrari,
   },
 ];
 
